@@ -16,10 +16,17 @@ public class GameFrame extends JFrame{
         lives = 3;
         score = 0;
         setTitle("Life: " + lives + " Score: " + score);
+        JPanel game = new GamePanel(this);
+        add(game);
+
     }
 
-    class GamePanel extends JPanel{
+    class GamePanel extends JPanel
+    {
+        public GamePanel(GameFrame frame)
+        {
 
+        }
     }
     
 }
