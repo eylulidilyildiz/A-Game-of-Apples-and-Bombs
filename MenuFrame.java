@@ -12,8 +12,8 @@ import javax.swing.JOptionPane;
 
 public class MenuFrame extends JFrame
 {
-    private static final int MENU_FRAME_WIDTH = 200;
-    private static final int MENU_FRAME_HEIGHT = 200;
+    private static final int MENU_FRAME_WIDTH = 300;
+    private static final int MENU_FRAME_HEIGHT = 300;
 
     private JLabel nameLabel;
     private JLabel speedLabel;
@@ -51,7 +51,7 @@ public class MenuFrame extends JFrame
     public JPanel createNamePanel()
     {
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(2,1));
+        panel.setLayout(new GridLayout(1,2));
         nameLabel = new JLabel("Name: ");
         panel.add(nameLabel);
 
@@ -67,7 +67,7 @@ public class MenuFrame extends JFrame
     public JPanel createSpeedPanel()
     {
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(2,1));
+        panel.setLayout(new GridLayout(1,2));
         speedLabel = new JLabel("Speed: ");
         panel.add(speedLabel);
 
@@ -151,12 +151,12 @@ public class MenuFrame extends JFrame
     //Checking TextField inputs
     public boolean isNameFieldEmpty()
     {
-        return (nameField.getText() == null);
+        return (nameField.getText().equals(""));
     }
 
     public boolean isSpeedFieldEmpty()
     {
-        return (speedField.getText() == null);
+        return (speedField.getText().equals(""));
     }
 
     public boolean isSpeedValid()
@@ -172,16 +172,6 @@ public class MenuFrame extends JFrame
             }
         }
         return speedIsValid;
-    }
-
-    //Getters
-    public String getName()
-    {
-        return nameOfUser;
-    }
-    public double getSpeed()
-    {
-        return speedOfUser;
     }
     
 }
