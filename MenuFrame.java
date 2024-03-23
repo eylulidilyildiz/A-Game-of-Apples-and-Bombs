@@ -119,6 +119,7 @@ public class MenuFrame extends JFrame
                 //GAME STARTS
                 nameOfUser = nameField.getText();
                 speedOfUser = Double.parseDouble(speedField.getText());
+                JFrame game = new GameFrame(nameOfUser, speedOfUser);
                 setVisible(false);
             }
             else{
