@@ -26,12 +26,17 @@ public class Ship extends JComponent{
         draw(g);
     }
 
+    public Ship(String name)
+    {
+        shipName = name;
+    }
 
     public void setLocation(int x, int y)
     {
         this.x = x;
         this.y = y;
         ship = new Rectangle(x, y, SHIP_WIDTH, SHIP_HEIGHT);
+        repaint();
     }
 
     public void draw(Graphics g)
