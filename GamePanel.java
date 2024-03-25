@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.MouseMotionListener;
 
 import javax.swing.JComponent;
@@ -10,23 +11,33 @@ import java.awt.event.MouseEvent;
 public class GamePanel extends JPanel
 {
 
-    private JComponent ship;
+    private Ship ship;
     private String shipName;
     private double componentSpeed;
 
-    public GamePanel(GameFrame frame)
+    public GamePanel(GameFrame frame, Ship sh)
     {
-        setBackground(Color.BLUE);
-
+        this.ship = sh;
         shipName=frame.getName();
         componentSpeed = frame.getSpeed();
-        createShip();
-        MouseMotionListener listener = new ShipLocationListener();
-        frame.addMouseMotionListener(listener);
+        setPreferredSize(new Dimension(500,500));
         add(ship);
+        MouseMotionListener listener = new ShipLocationListener();
+        ship.addMouseMotionListener(listener);
 
+        setBackground(Color.BLUE);
 
-
+    }
+    class ShipLocationListener implements MouseMotionListener
+    {
+        @Override
+        public void mouseMoved(MouseEvent event) 
+        {
+            int newX = event.getX();
+            int newY = event.getY();
+            ship.setLoc(newX, newY);
+        }
+        public void mouseDragged(MouseEvent e) {}
     }
 
 
@@ -35,14 +46,6 @@ public class GamePanel extends JPanel
         ship = new Ship(shipName);
     }
     
-    class ShipLocationListener implements MouseMotionListener
-    {
-        @Override
-        public void mouseMoved(MouseEvent event) 
-        {
-            ship.setLocation(event.getX(), event.getY());
-        }
-        public void mouseDragged(MouseEvent e) {}
-    }
+
 }
 

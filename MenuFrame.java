@@ -39,7 +39,6 @@ public class MenuFrame extends JFrame
         add(startButton);
 
         setVisible(true);
-
     }
 
     //CREATE PANELS
@@ -54,7 +53,6 @@ public class MenuFrame extends JFrame
         panel.setLayout(new GridLayout(1,2));
         nameLabel = new JLabel("Name: ");
         panel.add(nameLabel);
-
         createNameField();
         panel.add(nameField);
         return panel;

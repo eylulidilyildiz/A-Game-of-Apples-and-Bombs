@@ -17,6 +17,7 @@ public class GameFrame extends JFrame{
     private static final int INITIAL_LIVES = 3;
     private static final int FRAME_WIDTH = 500;
     private static final int FRAME_HEIGHT = 500;
+    private Ship ship;
 
 
     GameFrame(String nameInput, double speedInput)
@@ -26,14 +27,20 @@ public class GameFrame extends JFrame{
         lives = INITIAL_LIVES;
         score = 0;
 
+        ship = new Ship(name);
+
         setTitle("Life: " + lives + " Score: " + score);
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel game = new GamePanel(this);
+
+
+        GamePanel game = new GamePanel(this, ship);
         add(game);
         setVisible(true);
     }
+
+
       //Getters
     public String getName()
     {
