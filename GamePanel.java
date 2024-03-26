@@ -84,11 +84,13 @@ public class GamePanel extends JPanel
         {
             for(int i = 0; i < applesAndBombs.size(); i++)
             {
-                if(applesAndBombs.get(i).moveLeft(componentSpeed))
-                {              
-                    applesAndBombs.remove(i);
-                    applesAndBombs.add(new Apple());
-                    
+                if(applesAndBombs.get(i).moveLeft(componentSpeed) || applesAndBombs.get(i).intersects(ship))
+                {
+                    if(applesAndBombs.get(i).intersects(ship))
+                    {
+                        applesAndBombs.get(i).interact(ship);
+                    }            
+                    addAndRemoveComponent(i);
                 }
             }
             repaint();
@@ -104,6 +106,20 @@ public class GamePanel extends JPanel
             component.draw(g);
         }
         ship.draw(g);
+    }
+
+    public void addAndRemoveComponent(int index)
+    {
+        if(applesAndBombs.get(index) instanceof Apple)
+        {
+            applesAndBombs.remove(index);
+            applesAndBombs.add(new Apple());   
+        }
+        else if(applesAndBombs.get(index) instanceof Bomb)
+        {
+            applesAndBombs.remove(index);
+            applesAndBombs.add(new Bomb());   
+        }
     }
     
 
