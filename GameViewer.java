@@ -6,7 +6,5 @@ public class GameViewer {
      */
     public static void main(String[] args) {
         JFrame newGame = new MenuFrame();
-        
-        
     }
 }

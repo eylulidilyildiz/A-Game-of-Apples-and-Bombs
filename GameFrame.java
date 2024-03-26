@@ -3,6 +3,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
@@ -27,8 +28,6 @@ public class GameFrame extends JFrame{
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-
-
         GamePanel game = new GamePanel(this, ship);
         add(game);
         setVisible(true);
@@ -43,5 +42,6 @@ public class GameFrame extends JFrame{
     public int getSpeed()
     {
         return speed;
-    }  
+    }
+
 }

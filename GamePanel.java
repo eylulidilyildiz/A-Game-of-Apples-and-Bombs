@@ -7,6 +7,7 @@ import java.util.Random;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import java.awt.event.MouseEvent;
@@ -96,6 +97,7 @@ public class GamePanel extends JPanel
                 }
             }
             gmFrame.setTitle("Life: " + ship.getRemainingLives() + " Score: " + ship.getScore());
+            gameIsFinished();
             repaint();
 
         }
@@ -122,6 +124,27 @@ public class GamePanel extends JPanel
         {
             applesAndBombs.remove(index);
             applesAndBombs.add(new Bomb());   
+        }
+    }
+
+    public void gameIsFinished()
+    {
+        if(ship.getRemainingLives() <= 0)
+        {
+            String question = "Score: " + ship.getScore() + ", do you want to play again?";
+            JOptionPane.showConfirmDialog(gmFrame, question, "Select an option", 
+            JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+    
+            JOptionPane pane = new JOptionPane();
+            Object selectedValue = pane.getValue();
+            if((int)selectedValue == JOptionPane.YES_OPTION)
+            {
+                ship.setHealthAndScoreToInitial();
+            }
+            else if((int)selectedValue == JOptionPane.NO_OPTION)
+            {
+                System.exit(0);
+            }
         }
     }
     

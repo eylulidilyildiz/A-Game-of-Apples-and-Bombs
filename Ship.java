@@ -23,7 +23,7 @@ public class Ship extends JComponent{
 
     private Rectangle ship;
     private static final int SHIP_WIDTH = 50;
-    private static final int SHIP_HEIGHT = 25;
+    private static final int SHIP_HEIGHT = 20;
 
     @Override
     protected void paintComponent(Graphics g) 
@@ -56,7 +56,10 @@ public class Ship extends JComponent{
 
     public void draw(Graphics g)
     {
+        int remainingHealth = lives;
+        int currentScore = score;
         ship = new Rectangle(x, y, SHIP_WIDTH, SHIP_HEIGHT);
+        setHealthandScore(remainingHealth, currentScore);
     }
 
     //getters
@@ -81,5 +84,15 @@ public class Ship extends JComponent{
     public void incrementScore()
     {
         this.score++;
+    }
+    public void setHealthAndScoreToInitial()
+    {
+        this.lives = INITIAL_LIVES;
+        this.score = 0;
+    }
+    public void setHealthandScore(int h, int s)
+    {
+        this.lives = h;
+        this.score = s;
     }
 }
