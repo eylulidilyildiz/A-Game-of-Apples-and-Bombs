@@ -27,9 +27,11 @@ public class GamePanel extends JPanel
 
     private String shipName;
     private int componentSpeed;
+    private GameFrame gmFrame;
 
     public GamePanel(GameFrame frame, Ship sh)
     {
+        gmFrame = frame;
         Random randomInt = new Random();
         NUMBER_OF_APPLES = randomInt.nextInt(10,15);
         NUMBER_OF_BOMBS  = randomInt.nextInt(7,10);
@@ -93,6 +95,7 @@ public class GamePanel extends JPanel
                     addAndRemoveComponent(i);
                 }
             }
+            gmFrame.setTitle("Life: " + ship.getRemainingLives() + " Score: " + ship.getScore());
             repaint();
 
         }
