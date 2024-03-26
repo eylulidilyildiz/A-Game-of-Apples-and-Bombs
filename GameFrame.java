@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 public class GameFrame extends JFrame{
 
     private String name;
-    private double speed;
+    private int speed;
 
     private int lives;
     private int score;
@@ -20,7 +20,7 @@ public class GameFrame extends JFrame{
     private Ship ship;
 
 
-    GameFrame(String nameInput, double speedInput)
+    GameFrame(String nameInput, int speedInput)
     {
         name = nameInput;
         speed = speedInput;
@@ -46,7 +46,7 @@ public class GameFrame extends JFrame{
     {
         return name;
     }
-    public double getSpeed()
+    public int getSpeed()
     {
         return speed;
     }  

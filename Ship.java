@@ -19,22 +19,21 @@ public class Ship extends JComponent{
     private String shipName;
 
     private Rectangle ship;
-    private static final int SHIP_WIDTH = 40;
-    private static final int SHIP_HEIGHT = 20;
+    private static final int SHIP_WIDTH = 50;
+    private static final int SHIP_HEIGHT = 25;
 
     @Override
     protected void paintComponent(Graphics g) 
     {
         ship = new Rectangle(x, y, SHIP_WIDTH, SHIP_HEIGHT);
         draw(g);
+
     }
 
 
 
     public Ship(String name)
     {
-        JLabel nameLa = new JLabel("İdil");
-        add(nameLa);
         shipName = name;
         Dimension dim = new Dimension(500,500);
         setPreferredSize(dim);
@@ -44,7 +43,6 @@ public class Ship extends JComponent{
     {
         this.x = newX;
         this.y = newY;
-        //ship = new Rectangle(x, y, SHIP_WIDTH, SHIP_HEIGHT); */
         ship.setLocation(newX, newY);
         repaint();
     }
@@ -54,7 +52,8 @@ public class Ship extends JComponent{
         g.setColor(Color.YELLOW);
         g.fillRect((int)ship.getX(), (int)ship.getY(), SHIP_WIDTH, SHIP_HEIGHT);
         g.setColor(Color.BLACK);
-        g.drawString(shipName, (int)ship.getX(), (int)ship.getY() + SHIP_HEIGHT); 
+        g.drawString(shipName, ((int)ship.getX() + SHIP_WIDTH / 4), ((int)ship.getY() + SHIP_HEIGHT * 3 / 4)); 
+
     }
 
     public void setShipName(String name)

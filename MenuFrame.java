@@ -22,7 +22,7 @@ public class MenuFrame extends JFrame
     private JButton startButton;
 
     private String nameOfUser;
-    private double speedOfUser;
+    private int speedOfUser;
 
 
     public MenuFrame()
@@ -116,7 +116,7 @@ public class MenuFrame extends JFrame
             {
                 //GAME STARTS
                 nameOfUser = nameField.getText();
-                speedOfUser = Double.parseDouble(speedField.getText());
+                speedOfUser = Integer.parseInt(speedField.getText());
                 JFrame game = new GameFrame(nameOfUser, speedOfUser);
                 setVisible(false);
             }

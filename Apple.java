@@ -2,27 +2,32 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.Random;
 
 import javax.swing.JComponent; 
 
 
 public class Apple extends JComponent implements InteractableDrawing {
 
-    private static final int TOTAL_AMOUNT_OF_APPLES = 10;
-
     private static final int APPLE_SIZE = 15;
-    private static final int INITIAL_X = 500 - APPLE_SIZE;
+    private static final int DIMENSION_WIDTH = 500;
+    private static final int DIMENSION_HEIGHT = 500;
+
 
     private int x;
     private int y;
     private Rectangle apple;
 
 
-    public Apple(int xCoord, int yCoord)
+    public Apple()
     {
-        x = xCoord;
-        y = yCoord;
-        Dimension dim = new Dimension(500,500);
+        Random randomInt = new Random();
+        int xCoord = randomInt.nextInt(DIMENSION_WIDTH);
+        int yCoord = randomInt.nextInt(DIMENSION_HEIGHT);
+        x = xCoord - APPLE_SIZE;
+        y = yCoord - APPLE_SIZE;
+        apple = new Rectangle(xCoord, yCoord, APPLE_SIZE, APPLE_SIZE);
+        Dimension dim = new Dimension(DIMENSION_WIDTH,DIMENSION_HEIGHT);
         setPreferredSize(dim);
     }
 
@@ -34,7 +39,7 @@ public class Apple extends JComponent implements InteractableDrawing {
 
     public boolean intersects(Ship s)
     {
-
+        return true;
     }
 
     public void interact(Ship s)
@@ -45,7 +50,15 @@ public class Apple extends JComponent implements InteractableDrawing {
 
     public boolean moveLeft(int speed)
     {
+        this.x = x - speed;
+        apple.setLocation(x,y);
+        repaint();
 
+        if(apple.getX() + APPLE_SIZE < 0)
+        {
+            return true;
+        }
+        return false;
     }
 
 
