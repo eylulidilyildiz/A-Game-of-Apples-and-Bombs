@@ -57,7 +57,7 @@ public class GamePanel extends JPanel
         setBackground(Color.BLUE);
 
         TimerListener tListener = new TimerListener();
-        Timer t = new Timer(50, tListener);
+        Timer t = new Timer(20, tListener);
         t.start();
 
     }
@@ -77,16 +77,16 @@ public class GamePanel extends JPanel
     {
         public void actionPerformed(ActionEvent event)
         {
-            for(InteractableDrawing component: applesAndBombs)
+            for(int i = 0; i < applesAndBombs.size(); i++)
             {
-                if(component.moveLeft(componentSpeed))
+                if(applesAndBombs.get(i).moveLeft(componentSpeed))
                 {              
-                    applesAndBombs.remove(component);
-                    Apple newApple = new Apple();
-                    applesAndBombs.add(newApple);
-                    repaint();
+                    applesAndBombs.remove(i);
+                    applesAndBombs.add(new Apple());
+                    
                 }
             }
+            repaint();
             /*for(Bomb bomb: bombs)
             {
                 if(bomb.moveLeft(componentSpeed))

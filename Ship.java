@@ -25,9 +25,10 @@ public class Ship extends JComponent{
     @Override
     protected void paintComponent(Graphics g) 
     {
-        ship = new Rectangle(x, y, SHIP_WIDTH, SHIP_HEIGHT);
-        draw(g);
-
+        g.setColor(Color.YELLOW);
+        g.fillRect((int)ship.getX(), (int)ship.getY(), SHIP_WIDTH, SHIP_HEIGHT);
+        g.setColor(Color.BLACK);
+        g.drawString(shipName, ((int)ship.getX() + SHIP_WIDTH / 4), ((int)ship.getY() + SHIP_HEIGHT * 3 / 4)); 
     }
 
 
@@ -49,11 +50,7 @@ public class Ship extends JComponent{
 
     public void draw(Graphics g)
     {
-        g.setColor(Color.YELLOW);
-        g.fillRect((int)ship.getX(), (int)ship.getY(), SHIP_WIDTH, SHIP_HEIGHT);
-        g.setColor(Color.BLACK);
-        g.drawString(shipName, ((int)ship.getX() + SHIP_WIDTH / 4), ((int)ship.getY() + SHIP_HEIGHT * 3 / 4)); 
-
+        ship = new Rectangle(x, y, SHIP_WIDTH, SHIP_HEIGHT);
     }
 
     public void setShipName(String name)

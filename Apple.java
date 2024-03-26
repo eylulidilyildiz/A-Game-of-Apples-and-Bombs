@@ -33,8 +33,10 @@ public class Apple extends JComponent implements InteractableDrawing {
 
     @Override
     protected void paintComponent(Graphics g) {
-        apple = new Rectangle(x,y,APPLE_SIZE,APPLE_SIZE);
-        draw(g);
+        g.setColor(Color.GRAY);
+        g.fillRect((int)apple.getX(),(int)apple.getY(),APPLE_SIZE,APPLE_SIZE);
+        g.setColor(Color.RED);
+        g.fillOval((int)apple.getX(),(int)apple.getY(),APPLE_SIZE,APPLE_SIZE); 
     }
 
     public boolean intersects(Ship s)
@@ -51,23 +53,25 @@ public class Apple extends JComponent implements InteractableDrawing {
     public boolean moveLeft(int speed)
     {
         this.x = x - speed;
-        apple.setLocation(x,y);
-        repaint();
-
-        if(apple.getX() + APPLE_SIZE < 0)
+        
+        if(this.x < 0)
         {
             return true;
         }
-        return false;
+        else
+        {
+            apple.setLocation(x,y);
+            repaint();
+            return false;
+
+        }
     }
 
 
     public void draw(Graphics g)
     {
-        g.setColor(Color.GRAY);
-        g.fillRect((int)apple.getX(),(int)apple.getY(),APPLE_SIZE,APPLE_SIZE);
-        g.setColor(Color.RED);
-        g.fillOval((int)apple.getX(),(int)apple.getY(),APPLE_SIZE,APPLE_SIZE); 
+        apple = new Rectangle(x,y,APPLE_SIZE,APPLE_SIZE);
+        paintComponent(g);
     }
     
 }
