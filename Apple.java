@@ -41,12 +41,12 @@ public class Apple extends JComponent implements InteractableDrawing {
 
     public boolean intersects(Ship s)
     {
-        return true;
+        return apple.intersects(s.getShipShape());
     }
 
     public void interact(Ship s)
     {
-
+        s.incrementScore();
     }
 
 

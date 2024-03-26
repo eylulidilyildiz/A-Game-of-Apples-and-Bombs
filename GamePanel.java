@@ -48,6 +48,11 @@ public class GamePanel extends JPanel
             Apple apple = new Apple();
             applesAndBombs.add(apple);
         }
+        for (int i = 0; i < NUMBER_OF_BOMBS; i++)
+        {
+            Bomb bomb = new Bomb();
+            applesAndBombs.add(bomb);
+        }
 
 
         add(ship);
@@ -87,13 +92,6 @@ public class GamePanel extends JPanel
                 }
             }
             repaint();
-            /*for(Bomb bomb: bombs)
-            {
-                if(bomb.moveLeft(componentSpeed))
-                {
-                    bombs.remove(bomb);
-                }
-            }*/
 
         }
     }

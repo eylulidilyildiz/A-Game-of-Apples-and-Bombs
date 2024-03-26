@@ -17,6 +17,9 @@ public class Ship extends JComponent{
     private int x;
     private int y;
     private String shipName;
+    private int lives;
+    private int score;
+    private static final int INITIAL_LIVES = 3;
 
     private Rectangle ship;
     private static final int SHIP_WIDTH = 50;
@@ -35,7 +38,10 @@ public class Ship extends JComponent{
 
     public Ship(String name)
     {
+        lives = INITIAL_LIVES;
+        score = 0;
         shipName = name;
+        ship = new Rectangle(x, y, SHIP_WIDTH, SHIP_HEIGHT);
         Dimension dim = new Dimension(500,500);
         setPreferredSize(dim);
     }
@@ -53,13 +59,27 @@ public class Ship extends JComponent{
         ship = new Rectangle(x, y, SHIP_WIDTH, SHIP_HEIGHT);
     }
 
-    public void setShipName(String name)
-    {
-        shipName = name;
-    }
-
-    public Rectangle getShip()
+    //getters
+    public Rectangle getShipShape()
     {
         return ship;
-    } 
+    }
+    public int getRemainingLives()
+    {
+        return this.lives;
+    }
+    public int getScore()
+    {
+        return this.score;
+    }
+
+    //setters
+    public void loseHealth()
+    {
+        this.lives--;
+    }
+    public void incrementScore()
+    {
+        this.score++;
+    }
 }
