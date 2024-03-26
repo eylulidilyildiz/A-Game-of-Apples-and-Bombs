@@ -27,9 +27,11 @@ public class GamePanel extends JPanel
 
     private String shipName;
     private int componentSpeed;
+    private GameFrame gmFrame;
 
     public GamePanel(GameFrame frame, Ship sh)
     {
+        gmFrame = frame;
         Random randomInt = new Random();
         NUMBER_OF_APPLES = randomInt.nextInt(10,15);
         NUMBER_OF_BOMBS  = randomInt.nextInt(7,10);
@@ -47,6 +49,11 @@ public class GamePanel extends JPanel
         {
             Apple apple = new Apple();
             applesAndBombs.add(apple);
+        }
+        for (int i = 0; i < NUMBER_OF_BOMBS; i++)
+        {
+            Bomb bomb = new Bomb();
+            applesAndBombs.add(bomb);
         }
 
 
@@ -79,22 +86,28 @@ public class GamePanel extends JPanel
         {
             for(int i = 0; i < applesAndBombs.size(); i++)
             {
-                if(applesAndBombs.get(i).moveLeft(componentSpeed))
-                {              
-                    applesAndBombs.remove(i);
-                    applesAndBombs.add(new Apple());
-                    
-                }
-            }
-            repaint();
-            /*for(Bomb bomb: bombs)
-            {
-                if(bomb.moveLeft(componentSpeed))
+                if(applesAndBombs.get(i).moveLeft(componentSpeed) || applesAndBombs.get(i).intersects(ship))
                 {
-                    bombs.remove(bomb);
-                }
-            }*/
+                    if(applesAndBombs.get(i).intersects(ship))
+                    {
+                        applesAndBombs.get(i).interact(ship);
+                    }
 
+                    if(applesAndBombs.get(i) instanceof Apple)
+                    {
+                        applesAndBombs.remove(i);
+                        applesAndBombs.add(new Apple());
+                    }
+                    else if(applesAndBombs.get(i) instanceof Bomb)
+                    {
+                        applesAndBombs.remove(i);
+                        applesAndBombs.add(new Bomb());
+                    }
+                }
+                
+            }
+            gmFrame.setTitle("Life: " + ship.getLives() + " Score: " + ship.getScore());
+            repaint();
         }
     }
 
