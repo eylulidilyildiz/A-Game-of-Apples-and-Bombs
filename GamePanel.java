@@ -29,6 +29,7 @@ public class GamePanel extends JPanel
     private String shipName;
     private int componentSpeed;
     private GameFrame gmFrame;
+    private Timer t;
 
     public GamePanel(GameFrame frame, Ship sh)
     {
@@ -65,7 +66,7 @@ public class GamePanel extends JPanel
         setBackground(Color.BLUE);
 
         TimerListener tListener = new TimerListener();
-        Timer t = new Timer(20, tListener);
+        t = new Timer(20, tListener);
         t.start();
 
     }
@@ -132,17 +133,18 @@ public class GamePanel extends JPanel
         if(ship.getRemainingLives() <= 0)
         {
             String question = "Score: " + ship.getScore() + ", do you want to play again?";
-            JOptionPane.showConfirmDialog(gmFrame, question, "Select an option", 
-            JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
-    
-            JOptionPane pane = new JOptionPane();
-            Object selectedValue = pane.getValue();
+            int selectedValue = JOptionPane.showConfirmDialog(gmFrame, question, "Select an option", 
+            JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
             if((int)selectedValue == JOptionPane.YES_OPTION)
             {
+                t.stop();
                 ship.setHealthAndScoreToInitial();
+                t.start();
             }
             else if((int)selectedValue == JOptionPane.NO_OPTION)
             {
+                gmFrame.dispose();
+                gmFrame.setVisible(false);
                 System.exit(0);
             }
         }
