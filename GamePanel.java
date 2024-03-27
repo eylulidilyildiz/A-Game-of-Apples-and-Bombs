@@ -79,7 +79,11 @@ public class GamePanel extends JPanel
             int newY = event.getY();
             ship.setLoc(newX, newY);
         }
-        public void mouseDragged(MouseEvent e) {}
+        public void mouseDragged(MouseEvent event) {
+            int newX = event.getX();
+            int newY = event.getY();
+            ship.setLoc(newX, newY);
+        }
     }
 
     class TimerListener implements ActionListener
@@ -95,6 +99,7 @@ public class GamePanel extends JPanel
                         applesAndBombs.get(i).interact(ship);
                     }            
                     addAndRemoveComponent(i);
+                    i--;
                 }
             }
             gmFrame.setTitle("Life: " + ship.getRemainingLives() + " Score: " + ship.getScore());

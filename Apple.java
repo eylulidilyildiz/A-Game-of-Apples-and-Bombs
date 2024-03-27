@@ -22,7 +22,7 @@ public class Apple extends JComponent implements InteractableDrawing {
     public Apple()
     {
         Random randomInt = new Random();
-        int xCoord = randomInt.nextInt(DIMENSION_WIDTH);
+        int xCoord = randomInt.nextInt(DIMENSION_WIDTH*3/4, DIMENSION_WIDTH);
         int yCoord = randomInt.nextInt(DIMENSION_HEIGHT);
         x = xCoord - APPLE_SIZE;
         y = yCoord - APPLE_SIZE;
